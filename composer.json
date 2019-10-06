@@ -1,0 +1,51 @@
+{
+    "name": "alexstack/laravel-cms-plugin-system-file",
+    "description": "Laravel system file explorer, can view & edit files online.",
+    "type": "amila-laravel-cms-plugin",
+    "homepage": "https://github.com/AlexStack/Laravel-CMS-Plugin-System-File",
+    "keywords": [
+        "laravel",
+        "amila laravel cms",
+        "laravel file",
+        "file manager",
+        "laravel file manager",
+        "php file manager",
+        "system file explorer",
+        "amila laravel cms plugin"
+    ],
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/AlexStack/Laravel-CMS-Plugin-System-File/issues"
+    },
+    "authors": [{
+        "name": "Alex",
+        "homepage": "https://github.com/AlexStack/Laravel-CMS-Plugin-System-File"
+    }],
+    "require": {
+        "php": ">=7.0.0",
+        "alexstack/laravel-cms": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Amila\\LaravelCms\\Plugins\\SystemFile\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Amila\\LaravelCms\\Plugins\\SystemFile\\LaravelCmsPluginServiceProvider"
+            ]
+        },
+        "laravel-cms": {
+            "plugin-param-name": "page-tab-system-file"
+        }
+    },
+    "scripts": {
+        "post-package-install": [
+            "php artisan migrate --path=./vendor/alexstack/laravel-cms-plugin-system-file/src/database/migrations/",
+            "php artisan vendor:publish --provider=Amila\\LaravelCms\\Plugins\\SystemFile\\LaravelCmsPluginServiceProvider",
+            "php artisan laravelcms --action=clear"
+        ]
+    }
+}
