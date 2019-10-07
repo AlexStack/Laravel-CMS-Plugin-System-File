@@ -121,6 +121,8 @@ class SystemFileController extends Controller
 
         $real_file_path = isset($form_data['path']) ? base_path($form_data['path'].'/'.$form_data['file']) : base_path($form_data['file']);
 
+        $this->backupFile($real_file_path);
+
         $rs = file_put_contents($real_file_path, $form_data['file_content']);
 
         if ('json' == request()->response_type) {
@@ -137,6 +139,8 @@ class SystemFileController extends Controller
     public function destroy($form_data, $plugin, $plugin_settings)
     {
         $real_file_path = isset($form_data['path']) ? base_path($form_data['path'].'/'.$form_data['file']) : base_path($form_data['file']);
+
+        $this->backupFile($real_file_path, 'delete');
 
         $rs = unlink($real_file_path);
 
@@ -166,5 +170,16 @@ class SystemFileController extends Controller
         }
 
         return round($size, $precision).' '.$units[$i];
+    }
+
+    public function backupFile($real_file_path, $action='edit')
+    {
+        $file_backup_dir  = storage_path('app/laravel-cms/backups/system-files/'.date('Y-m'));
+        if (! file_exists($file_backup_dir)) {
+            mkdir($file_backup_dir, 0755, true);
+        }
+        $new_name = basename($real_file_path).'-'.$action.'-'.date('Y-m-d-His');
+
+        return copy($real_file_path, $file_backup_dir.'/'.$new_name);
     }
 }
