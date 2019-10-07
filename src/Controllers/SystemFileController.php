@@ -27,7 +27,7 @@ class SystemFileController extends Controller
     {
         $this->checkUser();
         $base_path = base_path();
-        if ('' != trim($form_data['path'])) {
+        if (isset($form_data['path']) && '' != trim($form_data['path'])) {
             $real_path       = $base_path.'/'.trim($form_data['path']);
             $crumbs          = explode('/', trim($form_data['path']));
             $crumb_links     = [];

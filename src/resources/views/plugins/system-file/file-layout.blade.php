@@ -1,21 +1,12 @@
 @extends($helper->bladePath('includes.layout','b'))
 
-@inject('str', 'Illuminate\Support\Str')
-
 @section('content')
 
 <div class="container">
     <div class="row justify-content-center mt-2">
-        <div class="col-md">
-            <div class="text-secondary breadcrumb">
-                <a href="?path="><i class="fas fa-home mr-2 text-success"></i> System File Explorer</a>
-                @foreach ($breadcrumbs as $link)
-                <span class="text-primary mr-1 ml-1">/</span>{!! $link !!}
-                @endforeach
-                <span class="text-primary mr-1 ml-1">/</span> {{ $_GET['file'] ?? 'All Files'}}
-            </div>
+        <div class="col-md-12">
+            @include($helper->bladePath('system-file.file-crumb','plugins'))
         </div>
-        <div class="w-100 "></div>
 
         @if ( isset($_GET['file']) && $file_content !== false )
 
@@ -38,6 +29,15 @@
 
         @endif
 
+        <div class="col-md-12 mt-2 text-info shortcuts">
+            CMS Shortcuts:
+            <a href="?path=resources/views/vendor/laravel-cms" class="btn btn-outline-secondary btn-sm">Templates</a>
+            <a href="?path=public/laravel-cms" class="btn btn-outline-secondary btn-sm">Assets</a>
+            <a href="?path=app/LaravelCms" class="btn btn-outline-secondary btn-sm">Plugin Controllers</a>
+
+            <a href="?path=storage/app/laravel-cms/backups" class="btn btn-outline-secondary btn-sm">Backups</a>
+
+        </div>
     </div>
 </div>
 
