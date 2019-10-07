@@ -5,7 +5,8 @@
             @foreach ($breadcrumbs as $link)
             <span class="text-primary mr-1 ml-1">/</span>{!! $link !!}
             @endforeach
-            <span class="text-primary mr-1 ml-1">/</span> {{ $_GET['file'] ?? 'All Files'}}
+            <span class="text-primary mr-1 ml-1">/</span>
+            {{ $_GET['file'] ?? (isset($_GET['create_new_file']) ? $helper->t('create_new_file') :'All Files')}}
         </div>
         <div class="col-md-auto text-right p-0">
             <a class="text-primary mr-1 ml-1 text-right" href="?path={{ $_GET['path'] ?? ''}}&create_new_file=yes">
