@@ -38,7 +38,7 @@
             ]
         },
         "laravel-cms": {
-            "plugin-param-name": "page-tab-system-file"
+            "plugin-param-name": "system-file"
         }
     },
     "scripts": {

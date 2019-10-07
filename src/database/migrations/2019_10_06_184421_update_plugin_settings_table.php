@@ -21,14 +21,14 @@ class UpdatePluginSettingsTable extends Migration
     {
         $setting_data = [
             'category'        => 'plugin',
-            'param_name'      => 'page-tab-system-file',
+            'param_name'      => 'system-file',
             'input_attribute' => '{"rows":10,"required":"required"}',
             'enabled'         => 1,
             'sort_value'      => 40,
             'abstract'        => 'Laravel system file explorer, can view & edit files online. <a href="https://www.laravelcms.tech" target="_blank"><i class="fas fa-link mr-1"></i>Tutorial</a>',
             'param_value'     => '{
 "plugin_name" : "System File Explorer",
-"blade_file" : "system-file",
+"blade_file" : "file-layout",
 "tab_name" : "<i class=\'fab fa-ubuntu mr-1\'></i>__(system,file)",
 "php_class"  : "Amila\\\\LaravelCms\\\\Plugins\\\\SystemFile\\\\Controllers\\\\SystemFileController",
 "number_per_page" : 40,
@@ -46,6 +46,6 @@ class UpdatePluginSettingsTable extends Migration
      */
     public function down()
     {
-        LaravelCmsSetting::where('param_name', 'page-tab-system-file')->where('category', 'plugin')->delete();
+        LaravelCmsSetting::where('param_name', 'system-file')->where('category', 'plugin')->delete();
     }
 }
