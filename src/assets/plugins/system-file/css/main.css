@@ -5,3 +5,7 @@
 .plugin-system-file .table-striped tbody tr:hover {
   background-color: #e9ecef;
 }
+
+.plugin-system-file .shortcut-logo {
+  padding-top: 0.35rem;
+}

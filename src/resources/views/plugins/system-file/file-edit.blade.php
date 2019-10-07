@@ -1,4 +1,4 @@
-<form method="POST" id="modify-file-form">
+<form method="POST" id="modify-file-form" class="w-100">
     <div class="col-md-12">
         <input type="hidden" name="_method" value="PUT" id="form-method">
         <textarea class="form-control" rows="10" id="file_content"

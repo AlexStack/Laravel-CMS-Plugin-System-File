@@ -1,7 +1,7 @@
 <div class="text-secondary breadcrumb pr-0">
     <div class="row w-100">
         <div class="col-md pl-2 pr-0">
-            <a href="?path="><i class="fas fa-home mr-2 text-success"></i> System File Explorer</a>
+            <a href="?home"><i class="fas fa-home mr-2 text-success"></i> System File Explorer</a>
             @foreach ($breadcrumbs as $link)
             <span class="text-primary mr-1 ml-1">/</span>{!! $link !!}
             @endforeach
