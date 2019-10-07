@@ -17,12 +17,25 @@
         </div>
         <div class="w-100 "></div>
 
-        @if ( isset($_GET['file']) )
+        @if ( isset($_GET['file']) && $file_content !== false )
+
         @include($helper->bladePath('system-file.file-edit','plugins'))
+
+        @elseif ( isset($_GET['file']) && $file_content === false )
+
+        <div class="col-md-12 text-center text-info">This file can not edit online</div>
+        @if( isset($image_preview_str) )
+        <div class="col-md-12 text-center m-2 img-preview">{!! $image_preview_str !!}</div>
+        @endif
+
         @elseif ( isset($_GET['create_new_file']))
+
         @include($helper->bladePath('system-file.file-create','plugins'))
+
         @else
+
         @include($helper->bladePath('system-file.file-list','plugins'))
+
         @endif
 
     </div>

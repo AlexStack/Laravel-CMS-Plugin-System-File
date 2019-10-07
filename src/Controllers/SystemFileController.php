@@ -4,6 +4,7 @@ namespace Amila\LaravelCms\Plugins\SystemFile\Controllers;
 
 use AlexStack\LaravelCms\Helpers\LaravelCmsHelper;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class SystemFileController extends Controller
 {
@@ -69,18 +70,21 @@ class SystemFileController extends Controller
             if (! file_exists($real_file_path)) {
                 exit($form_data['file'].' not exists!');
             }
-            $mime_type      = mime_content_type($real_file_path);
+            $mime_type = mime_content_type($real_file_path);
             if (false !== strpos($mime_type, 'text') || false !== strpos($mime_type, 'xml') || false !== strpos($mime_type, 'json') || false !== strpos($mime_type, 'svg') || false !== strpos($mime_type, 'javascript') || false !== strpos($mime_type, 'empty')) {
                 $data['file_content'] = file_get_contents($real_file_path);
             } else {
-                $data['file_content'] = $mime_type.' not support ---'.strpos($mime_type, 'empty');
+                $data['file_content'] = false;
+                if (false !== strpos($mime_type, 'image')) {
+                    $data['image_preview_str'] =  '<img src="data: '.$mime_type.';base64,'.base64_encode(file_get_contents($real_file_path)).'" class="img-fluid">';
+                }
             }
         } else {
-            $data['file_content'] = ' no file';
+            $data['file_content'] = 'no file';
             //$this->helper->debug($form_data);
         }
 
-        return view($this->helper->bladePath('system-file.system-file-list', 'plugins'), $data);
+        return view($this->helper->bladePath('system-file.file-layout', 'plugins'), $data);
     }
 
     // public function create($form_data, $plugin, $plugin_settings)
@@ -101,14 +105,14 @@ class SystemFileController extends Controller
         return redirect()->route('LaravelCmsAdminPlugins.show', ['plugin'=> $plugin->param_name, 'path'=>$form_data['path'], 'file'=>$form_data['filename']]);
     }
 
-    public function edit($form_data, $plugin, $plugin_settings)
+    public function edit($id, $plugin)
     {
         // uncomment exit() line to make sure your plugin method invoked
         // please check the php_class value if not invoked
 
         //exit('Looks good, the plugin\'s edit() method invoked. id='.$id.' <hr> FILE='.__FILE__.' <hr> PAGE TITLE='.$page->title);
 
-        return true;
+        return $id;
     }
 
     public function update($form_data, $plugin, $plugin_settings)
