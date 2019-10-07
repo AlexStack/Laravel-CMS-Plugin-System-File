@@ -1,6 +1,6 @@
 {
     "name": "alexstack/laravel-cms-plugin-system-file",
-    "description": "Laravel system file explorer, can view & edit files online.",
+    "description": "Laravel system file explorer, can view & edit files online.(eg. .php/.blade.php/.js/.html/.txt/.json/.css)",
     "type": "amila-laravel-cms-plugin",
     "homepage": "https://github.com/AlexStack/Laravel-CMS-Plugin-System-File",
     "keywords": [

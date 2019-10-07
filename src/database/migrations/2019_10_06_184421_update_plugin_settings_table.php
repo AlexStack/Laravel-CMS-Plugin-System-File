@@ -29,9 +29,9 @@ class UpdatePluginSettingsTable extends Migration
             'param_value'     => '{
 "plugin_name" : "System File Explorer",
 "blade_file" : "file-layout",
-"tab_name" : "<i class=\'fab fa-ubuntu mr-1\'></i>__(system,file)",
+"tab_name" : "<i class=\'fab fa-ubuntu mr-2\' style=\'color:purple;\'></i>__(system,file)",
 "php_class"  : "Amila\\\\LaravelCms\\\\Plugins\\\\SystemFile\\\\Controllers\\\\SystemFileController",
-"number_per_page" : 40,
+"hide_in_menu" : false,
 "plugin_type" : "standalone"
 }',
         ];
