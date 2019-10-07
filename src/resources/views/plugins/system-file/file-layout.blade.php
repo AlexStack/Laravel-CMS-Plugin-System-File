@@ -2,7 +2,9 @@
 
 @section('content')
 
-<div class="container">
+<link href="{{$helper->assetUrl('../plugins/system-file/css/main.css') }}" rel="stylesheet">
+
+<div class="container plugin-system-file">
     <div class="row justify-content-center mt-2">
         <div class="col-md-12">
             @include($helper->bladePath('system-file.file-crumb','plugins'))

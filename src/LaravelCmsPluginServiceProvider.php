@@ -13,6 +13,9 @@ class LaravelCmsPluginServiceProvider extends ServiceProvider
     {
         // Publish admin view
         $this->publishes([__DIR__.'/resources/views/plugins' => base_path('resources/views/vendor/laravel-cms/plugins')], 'system-file-views');
+
+        // Publish assets
+        $this->publishes([__DIR__.'/assets/plugins' => public_path('laravel-cms/plugins')], 'system-file-assets');
     }
 
     /**
