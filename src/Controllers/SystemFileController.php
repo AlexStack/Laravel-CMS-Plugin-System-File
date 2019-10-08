@@ -166,7 +166,7 @@ class SystemFileController extends Controller
         $i            = 0;
         while (($size / $step) > 0.9) {
             $size = $size / $step;
-            ++$i;
+            $i    = $i + 1;
         }
 
         return round($size, $precision).' '.$units[$i];
