@@ -13,6 +13,7 @@
 
 -   Laravel system file explorer
 -   Can view & edit files online.
+-   Store file edit history in case make a mistake
 
 ## Install it via command line manually
 
@@ -21,7 +22,7 @@ composer require alexstack/laravel-cms-plugin-system-file
 
 php artisan migrate --path=./vendor/alexstack/laravel-cms-plugin-system-file/src/database/migrations
 
-php artisan vendor:publish --force --tag=system-file-views
+php artisan vendor:publish --force --tag=Amila\\LaravelCms\\Plugins\\SystemFile\\LaravelCmsPluginServiceProvider
 
 php artisan laravelcms --action=clear
 

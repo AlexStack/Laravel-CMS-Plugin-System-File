@@ -19,6 +19,17 @@
 
 <div class="w-100 mb-2"></div>
 
+@if( isset($file_history) && ! empty($file_history) )
+<ul class="list-group mb-5 file-history">
+    <li class="list-group-item list-group-item-dark"><i
+            class="fas fa-clinic-medical mr-1"></i>{{$helper->t('plugin-system-file.file_history')}}</li>
+    @foreach($file_history as $file=>$folder)
+    <li class="list-group-item list-group-item-action"><a
+            href="?path=storage/app/laravel-cms/backups/system-files/{{$folder}}&file={{$file}}"
+            target="_blank">{{$file}}</a></li>
+    @endforeach
+</ul>
+@endif
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css">
