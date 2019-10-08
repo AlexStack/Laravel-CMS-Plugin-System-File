@@ -18,7 +18,7 @@
             </div>
             <div class="input-group-append">
                 <button class="btn btn-success" type="submit"
-                    id="inputGroupFileAddon05">{{$helper->t('create_new_file')}}</button>
+                    id="inputGroupFileAddon05">{{$helper->t('plugin-system-file.create_new_file')}}</button>
             </div>
         </div>
 
@@ -27,8 +27,8 @@
         <div id="ajax-results"></div>
         {{-- <button type="submit" class="btn btn-success m-3"><i class="fas fa-save mr-2"></i>Create the file </button> --}}
 
-        <a href="?path={{$_GET['path']??''}}" class="btn btn-secondary m-3"><i class="fas fa-list-alt mr-2"></i>Return
-            to the folder</a>
+        <a href="?path={{$_GET['path']??''}}" class="btn btn-secondary m-3"><i
+                class="fas fa-list-alt mr-2"></i>{{$helper->t('plugin-system-file.return_to_the_folder')}}</a>
     </div>
 </form>
 

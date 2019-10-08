@@ -25,7 +25,7 @@
             @empty
             <tr>
                 <td>
-                    <div class="text-info text-center">No Results</div>
+                    <div class="text-info text-center">{{$helper->t('no_results')}}</div>
                 </td>
             </tr>
             @endforelse

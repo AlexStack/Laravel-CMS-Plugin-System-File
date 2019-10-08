@@ -6,10 +6,11 @@
     </div>
     <div class="col-md-auto text-center">
         <div id="ajax-results"></div>
-        <button type="submit" class="btn btn-success m-3"><i class="fas fa-save mr-2"></i>Modify the file </button>
+        <button type="submit" class="btn btn-success m-3"><i
+                class="fas fa-save mr-2"></i>{{$helper->t('plugin-system-file.modify_the_file')}}</button>
 
-        <a href="?path={{$_GET['path']??''}}" class="btn btn-secondary m-3"><i class="fas fa-list-alt mr-2"></i>Return
-            to the folder</a>
+        <a href="?path={{$_GET['path']??''}}" class="btn btn-secondary m-3"><i
+                class="fas fa-list-alt mr-2"></i>{{$helper->t('plugin-system-file.return_to_the_folder')}}</a>
 
         <button type="submit" class="btn btn-outline-info m-3 btn-delete"><i
                 class="far fa-trash-alt"></i><span></span></button>
@@ -102,7 +103,7 @@
                 return true;
             } else {
                 e.preventDefault();
-                $(this).find('span').addClass('ml-1').html('Confirm to delete');
+                $(this).find('span').addClass('ml-1').html('{{$helper->t('plugin-system-file.confirm_to_delete')}}');
                 $(this).addClass('btn-outline-danger confirm-delete');
                 return false;
             }

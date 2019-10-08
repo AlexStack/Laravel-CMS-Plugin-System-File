@@ -16,7 +16,7 @@
 
         @elseif ( isset($_GET['file']) && $file_content === false )
 
-        <div class="col-md-12 text-center text-info">This file can not edit online</div>
+        <div class="col-md-12 text-center text-info">{{$helper->t('plugin-system-file.file_can_not_edit')}}</div>
         @if( isset($image_preview_str) )
         <div class="col-md-12 text-center m-2 img-preview">{!! $image_preview_str !!}</div>
         @endif
@@ -34,7 +34,7 @@
         <div class="col-md-12 mt-2 text-secondary shortcuts">
             <img src="/laravel-cms/plugins/system-file/images/favicon-32x32.png" width="16"
                 class="align-top shortcut-logo" />
-            CMS Shortcuts:
+            {{$helper->t('plugin-system-file.cms_shortcuts')}} :
             <a href="?path=resources/views/vendor/laravel-cms" class="btn btn-outline-secondary btn-sm">Templates</a>
             <a href="?path=public/laravel-cms" class="btn btn-outline-secondary btn-sm">Assets</a>
             <a href="?path=app/LaravelCms" class="btn btn-outline-secondary btn-sm">Plugin Controllers</a>
