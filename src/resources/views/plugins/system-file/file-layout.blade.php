@@ -25,6 +25,10 @@
 
         @include($helper->bladePath('system-file.file-create','plugins'))
 
+        @elseif ( isset($_GET['show_file_history']))
+
+        @include($helper->bladePath('system-file.file-history','plugins'))
+
         @else
 
         @include($helper->bladePath('system-file.file-list','plugins'))
