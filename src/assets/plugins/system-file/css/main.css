@@ -9,3 +9,8 @@
 .plugin-system-file .shortcut-logo {
   padding-top: 0.35rem;
 }
+
+.plugin-system-file .CodeMirror {
+  border: 1px solid #d1d7dc;
+  height: auto;
+}

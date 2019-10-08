@@ -1,12 +1,3 @@
-<style>
-    .table-striped tbody tr:nth-of-type(2n+1) {
-        background-color: #e9ecef3b;
-    }
-
-    .table-striped tbody tr:hover {
-        background-color: #e9ecef;
-    }
-</style>
 <div class="col-md">
     <table class="table table-striped table-hover">
         <tbody>
