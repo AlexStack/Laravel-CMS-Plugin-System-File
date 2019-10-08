@@ -28,6 +28,9 @@ class SystemFileController extends Controller
         $this->checkUser();
         $base_path = base_path();
         if (isset($form_data['path']) && '' != trim($form_data['path'])) {
+            if (false !== strpos($form_data['path'], '..')) {
+                exit('Invalid path: '.$form_data['path']);
+            }
             $real_path       = $base_path.'/'.trim($form_data['path']);
             $crumbs          = explode('/', trim($form_data['path']));
             $crumb_links     = [];
@@ -66,6 +69,10 @@ class SystemFileController extends Controller
 
         // edit a file
         if (isset($form_data['file']) && '' != trim($form_data['file'])) {
+            if (false !== strpos($form_data['file'], '..') || false !== strpos($form_data['file'], '/')) {
+                exit('Invalid file: '.$form_data['file']);
+            }
+
             $real_file_path = isset($form_data['path']) ? base_path($form_data['path'].'/'.$form_data['file']) : base_path($form_data['file']);
             if (! file_exists($real_file_path)) {
                 exit($form_data['file'].' not exists!');
