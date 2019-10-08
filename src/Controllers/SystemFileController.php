@@ -241,6 +241,10 @@ class SystemFileController extends Controller
     {
         $history_file  = storage_path('app/laravel-cms/backups/system-files/history.php');
 
+        if (! file_exists($history_file)) {
+            return [];
+        }
+
         if (null == $real_file_path) {
             // show all files history
             $history_ary = array_flip(array_unique(array_reverse(include($history_file))));
@@ -260,21 +264,17 @@ class SystemFileController extends Controller
 
         // find the file
         $real_file_path = substr(str_replace(base_path(), '', $real_file_path), 1);
-        if (file_exists($history_file)) {
-            $history_ary = include $history_file;
-            $history_ary = array_reverse(array_filter($history_ary, function ($v) use ($real_file_path) {
-                return $v == $real_file_path;
-            }));
+        $history_ary    = include $history_file;
+        $history_ary    = array_reverse(array_filter($history_ary, function ($v) use ($real_file_path) {
+            return $v == $real_file_path;
+        }));
 
-            array_walk($history_ary, function (&$v, $k) {
-                $ary = array_reverse(explode('-', $k));
-                $v = $ary[3].'-'.$ary[2];
-            });
+        array_walk($history_ary, function (&$v, $k) {
+            $ary = array_reverse(explode('-', $k));
+            $v = $ary[3].'-'.$ary[2];
+        });
 
-            //$this->helper->debug($history_ary);
-            return $history_ary;
-        } else {
-            return [];
-        }
+        //$this->helper->debug($history_ary);
+        return $history_ary;
     }
 }
