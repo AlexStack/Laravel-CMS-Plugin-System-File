@@ -32,6 +32,8 @@ class UpdatePluginSettingsTable extends Migration
 "tab_name" : "<i class=\'fab fa-ubuntu mr-2\' style=\'color:purple;\'></i>__(system,file)",
 "php_class"  : "Amila\\\\LaravelCms\\\\Plugins\\\\SystemFile\\\\Controllers\\\\SystemFileController",
 "hide_in_menu" : false,
+"js_for_all_admin_pages" : "js/bottom_of_all_admin_pages.js",
+"composer_install_only" : false,
 "plugin_type" : "standalone"
 }',
         ];
