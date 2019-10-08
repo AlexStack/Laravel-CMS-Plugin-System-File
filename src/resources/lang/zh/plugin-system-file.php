@@ -8,4 +8,5 @@ return [
     'cms_shortcuts'        => 'CMS文件快捷入口',
     'all_files'            => '全部文件',
     'system_file_explorer' => '系统文件管理',
+    'file_history'         => '文件修改记录',
 ];

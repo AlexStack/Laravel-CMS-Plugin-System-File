@@ -8,4 +8,5 @@ return [
     'cms_shortcuts'        => 'CMS Shortcuts',
     'all_files'            => 'All Files',
     'system_file_explorer' => 'System File Explorer',
+    'file_history'         => 'File Edit History',
 ];
