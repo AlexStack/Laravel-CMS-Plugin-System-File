@@ -1,6 +1,6 @@
 <?php
 
-namespace App\LaravelCms\Plugins\SystemFile\Controllers;
+namespace Amila\LaravelCms\Plugins\SystemFile\Controllers;
 
 use AlexStack\LaravelCms\Helpers\LaravelCmsHelper;
 use App\Http\Controllers\Controller;

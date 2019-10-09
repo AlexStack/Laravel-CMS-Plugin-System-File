@@ -49,6 +49,17 @@ function systemFileShowTopLinks() {
 }
 
 
+function systemFileCountFiles() {
+  $(".folder-action").prepend(
+    '<span class=" text-right text-secondary count-files d-none mr-3"><i class="far fa-folder mr-2 ml-5"></i>Folders : ' +
+    $("#file-list-table i.fa-folder").length + ' <i class="far fa-file mr-2 ml-3"></i>Files : ' + $("#file-list-table i.fa-file").length +
+    "</span>"
+  );
+  $(".count-files").hide()
+    .removeClass("d-none")
+    .fadeIn("slow");
+}
+
 // Main controller function will invoke after the page dom loaded
 $(function () {
   if (location.href.indexOf(admin_route + "/settings/") !== -1) {
@@ -63,5 +74,12 @@ $(function () {
     location.href.indexOf("path=") == -1
   ) {
     systemFileShowTopLinks();
+  }
+
+  if (
+    location.href.indexOf(admin_route + "/plugins/system-file") !== -1 &&
+    location.href.indexOf("file=") == -1
+  ) {
+    systemFileCountFiles();
   }
 });
