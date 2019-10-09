@@ -1,6 +1,6 @@
 <?php
 
-namespace Amila\LaravelCms\Plugins\SystemFile\Controllers;
+namespace App\LaravelCms\Plugins\SystemFile\Controllers;
 
 use AlexStack\LaravelCms\Helpers\LaravelCmsHelper;
 use App\Http\Controllers\Controller;
@@ -34,6 +34,8 @@ class SystemFileController extends Controller
             $form_data['file'] = $pathinfo['basename'];
 
             return redirect()->route('LaravelCmsAdminPlugins.show', ['plugin'=> $plugin->param_name, 'path'=>$form_data['path'], 'file'=>$form_data['file']]);
+        } elseif (isset($form_data['delete_path']) && '' != trim($form_data['delete_path'])) {
+            return $this->deleteFolder($form_data, $plugin, $plugin_settings);
         }
 
         if (isset($form_data['path']) && '' != trim($form_data['path'])) {
@@ -204,13 +206,21 @@ class SystemFileController extends Controller
 
     public function backupFile($real_file_path, $action='edit')
     {
+        if (strpos($real_file_path, '/laravel-cms/backups/system-files/')) {
+            return false;
+        }
+
         $file_backup_dir  = storage_path('app/laravel-cms/backups/system-files/'.date('Y-m'));
         if (! file_exists($file_backup_dir)) {
             mkdir($file_backup_dir, 0755, true);
         }
         $new_name = basename($real_file_path).'-'.$action.'-'.date('Y-m-d-His');
+        if (is_dir($real_file_path) && '' != trim(request()->delete_path)) {
+            $rs = rename($real_file_path, $file_backup_dir.'/'.$new_name);
+        } else {
+            $rs = copy($real_file_path, $file_backup_dir.'/'.$new_name);
+        }
 
-        $rs = copy($real_file_path, $file_backup_dir.'/'.$new_name);
         if ($rs) {
             $this->updateHistory($new_name, $real_file_path);
         }
@@ -220,11 +230,8 @@ class SystemFileController extends Controller
 
     public function updateHistory($filename, $real_file_path)
     {
-        $max_number    = 2000;
-        $history_file  = storage_path('app/laravel-cms/backups/system-files/history.php');
-        if (strpos($real_file_path, '/laravel-cms/backups/system-files/')) {
-            return false;
-        }
+        $max_number     = 2000;
+        $history_file   = storage_path('app/laravel-cms/backups/system-files/history.php');
         $real_file_path = substr(str_replace(base_path(), '', $real_file_path), 1);
         if (file_exists($history_file)) {
             $history_ary   = include $history_file;
@@ -284,5 +291,25 @@ class SystemFileController extends Controller
 
         //$this->helper->debug($history_ary);
         return $history_ary;
+    }
+
+    public function deleteFolder($form_data, $plugin, $plugin_settings)
+    {
+        $delete_path = trim($form_data['delete_path']);
+        if (false !== strpos($delete_path, '..') || false !== strpos($delete_path, './')) {
+            exit('Invalid path: '.$delete_path);
+        }
+
+        $real_file_path = base_path($delete_path);
+
+        if (strpos($real_file_path, '/laravel-cms/backups/system-files/')) {
+            \File::deleteDirectory($real_file_path); // destroy for every
+        } else {
+            $rs = $this->backupFile($real_file_path, 'delete'); // it rename,move to backup folder
+        }
+
+        $upper_path = '.' == dirname($delete_path) ? null : dirname($delete_path);
+
+        return redirect()->route('LaravelCmsAdminPlugins.show', ['plugin'=> $plugin->param_name, 'path'=>$upper_path]);
     }
 }
