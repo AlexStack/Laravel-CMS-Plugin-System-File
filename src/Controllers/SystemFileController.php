@@ -122,6 +122,14 @@ class SystemFileController extends Controller
             exit();
         }
 
+        if (isset($form_data['is_dir'])) {
+            mkdir($real_file_path, 0755);
+
+            $path = '' == trim($form_data['path']) ? $form_data['filename'] : $form_data['path'].'/'.$form_data['filename'];
+
+            return redirect()->route('LaravelCmsAdminPlugins.show', ['plugin'=> $plugin->param_name, 'path'=>$path]);
+        }
+
         $rs = file_put_contents($real_file_path, "\n\n\n\n\n\n\n\n");
 
         return redirect()->route('LaravelCmsAdminPlugins.show', ['plugin'=> $plugin->param_name, 'path'=>$form_data['path'], 'file'=>$form_data['filename']]);
