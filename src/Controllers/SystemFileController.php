@@ -62,7 +62,9 @@ class SystemFileController extends Controller
             $data['breadcrumbs'] = [];
         }
         $data['files'] = [];
-        foreach (glob($real_path.'/{,.}[!.,!..]*', GLOB_BRACE) as $file) {
+        // foreach (glob($real_path.'/{,.}[!.,!..]*', GLOB_BRACE) as $file) {
+        $all_files = array_merge(glob($real_path.'/.[!.]*'), glob($real_path.'/*'));
+        foreach ($all_files as $file) {
             $pathinfo = pathinfo($file);
             $fn       = $pathinfo['basename'];
 
